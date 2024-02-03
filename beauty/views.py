@@ -1,9 +1,13 @@
-from django.shortcuts import render
 from rest_framework import generics
-from .models import *
-from .serializers import *
+from rest_framework.permissions import AllowAny
+from .models import Salon
+from .serializers import SalonSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
 
-# Create your views here.
+
+
+
 class SalonList(generics.ListCreateAPIView):
     queryset = Salon.objects.all()
     serializer_class = SalonSerializer
+    permission_classes = [AllowAny]
